@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>錯誤事件的使用</title>
+</head>
+
+<body>
+    <img src="" alt="book" id="book">
+    <!-- <img src="https://cdn-icons-png.flaticon.com/512/7465/7465751.png" alt=""> -->
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        // $("#book").on("error", e => {
+        //     $(e.currentTarget).attr("src", "https://cdn-icons-png.flaticon.com/512/7465/7465751.png")
+        // })
+        // .attr("src", "missing.png")
+        const book = document.querySelector("#book");
+
+        book.addEventListener("error", e => {
+            e.currentTarget.src = "https://cdn-icons-png.flaticon.com/512/7465/7465751.png"
+        });
+
+        book.src = "missing.png"
+    </script>
+</body>
+
+</html>

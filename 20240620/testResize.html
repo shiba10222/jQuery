@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resize事件</title>
+    <style>
+        .active {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(window).on("resize", function(){
+            if($(this).width() > 768){
+                $("body").addClass("active");
+            }else{
+                $("body").removeClass("active");
+            }
+        })
+    </script>
+</body>
+
+</html>
