@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>右鍵選單</title>
+</head>
+
+<body>
+    <div class="tip">打開右鍵選單</div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).on("contextmenu", e => {
+            e.preventDefault();
+        })
+        $(".tip").on("contextmenu", e => {
+            e.stopPropagation();
+        })
+    </script>
+</body>
+
+</html>

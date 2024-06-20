@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>屬性選擇器</title>
+</head>
+
+<body>
+    <a href="https://api.jquery.com/category/ajax/" target="_blank" hreflang="en">Category: Ajax</a><br>
+    <a href="https://api.jquery.com/category/attributes/" target="_self" data-name="Attributes" hreflang="en-UK">Category: Attributes</a><br>
+    <a href="https://api.jquery.com/category/selectors/attribute-selectors/" target="_blank" data-name="Attribute"  hreflang="english">Category: Attribute</a><br>
+    <a href="https://api.jquery.com/category/css/" target="_self" data-name="CSS">Category: CSS</a><br>
+    <input name="newsletter" value="newsletter"><br>
+    <input name="milkman" value="milkman"><br>
+    <input name="jobletter" value="jobletter"><br>
+    <input name="newsboy" value="newsboy"><br>
+    <input name="hotmanlike" value="hotmanlike"><br>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        // $("a[data-name=CSS]").css("background-color", "pink");
+        // $("a[target=_blank]").css("background-color", "pink");
+        // $("a[data-name!=CSS]").css("background-color", "pink");
+        // $("input[name^=news]").css("background-color", "pink");
+        // $("input[name$=letter]").css("background-color", "pink");
+        // $("a[data-name]").css("background-color", "pink");
+        // $("a[hreflang|=en]").css("background-color", "pink");
+        // $("input[name*=man]").css("background-color", "pink");
+        // $("a[data-name*=Attribute]").css("background-color", "pink");
+        $("a[target=_blank][hreflang=en]").css("background-color", "pink");
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

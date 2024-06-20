@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表單選擇器</title>
+    <style>
+        input[type=checkbox] {
+            display: none
+        }
+        input[type=checkbox] + label::before{
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 1px solid black;
+            margin-right:6px
+
+        }
+        input[type=checkbox]:checked + label::before{
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 1px solid black;
+            background-color: red;
+        }
+        input[type=checkbox]:disabled + label{
+            color: #aaaaaa;
+            text-decoration:line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button>按鈕</button>
+        <input type="button" value="輸入欄位類型按鈕">
+        <input type="reset" value="重置">
+        <input type="submit" value="送出">
+        <br><br>
+
+        <input type="checkbox" id="html" name="vehicle1" value="HTML" checked>
+        <label for="html">HTML</label>
+        <input type="checkbox" id="css" name="vehicle2" value="CSS">
+        <label for="css">CSS</label>
+        <input type="checkbox" id="javascript" name="vehicle3" value="JavaScript" disabled>
+        <label for="javascript">JavaScript</label>
+        <br><br>
+
+        <input type="radio" id="male" name="fav_language" value="男">
+        <label for="male">男</label>
+        <input type="radio" id="female" name="fav_language" value="女">
+        <label for="female">女</label>
+        <input type="radio" id="none" name="fav_language" value="不告訢你">
+        <label for="none">不告訢你</label>
+
+        <br><br>
+        <label for="fname">名字:</label>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">姓氏:</label>
+        <input type="text" id="lname" name="lname"><br>
+        <label for="location">所在地:</label>
+        <input type="text" id="location" value="Taiwan" disabled><br>
+        <label for="password">密碼:</label>
+        <input type="password" id="password"><br>
+        <label for="email">信箱:</label>
+        <input type="email" id="email"><br>
+        <label for="notype">沒有type的：</label>
+        <input id="notype" name="notype"><br>
+        <br><br>
+
+        <label for="aa">喜好：</label>
+        <select id="aa" name="garden" multiple="multiple">
+            <option>看電視</option>
+            <option selected="selected">看小說</option>
+            <option>旅行</option>
+            <option selected="selected">看漫畫</option>
+            <option>種花</option>
+            <option>時尚</option>
+        </select>
+        <br><br>
+
+        <input type="file"><br>
+        <input type="image" src="https://interactive-examples.mdn.mozilla.net/media/examples/login-button.png">
+
+        <br><br>
+        <textarea name="" id="" cols="30" rows="10">123</textarea>
+    </div>
+    <div class="aaa" type="button">123</div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        // $("button").css("background-color", "pink");
+        // $(":button").css("background-color", "pink");
+        // $("input[type=button]").css("background-color", "pink");
+        // $("[type=button]").css("background-color", "pink");
+        // $(":checkbox").css("display", "none");
+        // $("input[type=checkbox]").css("display", "none");
+        // $("input[type=checkbox]:checked").css("display", "none");
+        // $("[type=checkbox]:checked").css("display", "none");
+        // $(":checked").css("display", "none");
+        // $(":disabled").css("background-color", "pink");
+        // $("input:disabled").css("background-color", "pink");
+        // $("*:disabled").css("background-color", "pink");
+        // $("*:enabled").css("background-color", "pink");
+        // $("[type=file]").css("background-color", "pink");
+        // $(":focus").css("background-color", "pink");
+        // $().is(":focus")
+        // $("input[type=image]").css("background-color", "blue");
+        // $("input").css("background-color", "pink");
+        $(":radio").next().css("background-color", "pink");
+    </script>
+</body>
+
+</html>

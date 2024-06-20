@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ready事件</title>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        // $(document).ready(function () {
+        //     $(".btn").on("click", function () {
+        //         alert(":)")
+        //     })
+        // });
+        // $(function(){
+        //     $(".btn").on("click", function () {
+        //         alert(":)")
+        //     })
+        // })
+        document.addEventListener("DOMContentLoaded", () => {
+            $(".btn").on("click", function () {
+                alert(":)")
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="btn">ClickMe</div>
+</body>
+
+</html>

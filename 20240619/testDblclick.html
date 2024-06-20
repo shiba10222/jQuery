@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雙擊事件的綁定與觸發</title>
+    <style>
+        .cat {
+            position: relative;
+            width: 220px;
+            height: 250px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .cat img {
+            position: absolute;
+            display: none;
+        }
+
+        .cat img.active {
+            display: block;
+        }
+
+        .hole {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            border-radius: 100%;
+            background-color: #9a9999;
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            line-height: 50px;
+            user-select: none;
+        }
+
+        .hole.active {
+            background-color: #e48686;
+        }
+
+        .hole.active2 {
+            display: none;
+        }
+
+        .show {
+            position: relative;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 150px;
+            height: 50px;
+            color: #4e4747;
+            text-align: center;
+            line-height: 50px;
+            user-select: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cat">
+        <div class="hole">hit me</div>
+        <img src="https://media.tenor.com/rEX2Hydlda4AAAAM/cute-adorable.gif" alt="">
+    </div>
+    <div class="show">直接按兩下</div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(".hole").on("click", function(){
+            $(this).addClass("active");
+        }).on("dblclick", function(){
+            $(this).addClass("active2");
+            $(".cat img").addClass("active");
+        })
+
+        $(".show").click(function(){
+            $(".hole").trigger("dblclick");
+        });
+    </script>
+</body>
+
+</html>

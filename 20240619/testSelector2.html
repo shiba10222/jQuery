@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>測試基本選擇器2</title>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            background-color: #e2e1e1;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        .container {
+            width: 700px;
+            background-color: #fff;
+            height: 100%;
+            padding-top: 50px;
+            padding-left: 30px;
+            padding-right: 30px;
+            box-shadow: 0px 0px 15px #aaaaaa;
+        }
+
+        .container>.row {
+            box-sizing: border-box;
+            display: flex;
+            margin-bottom: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 10px;
+        }
+
+        .container>.active {
+            background-color: #f62c2c;
+        }
+
+        .container>.row>.col {
+            box-sizing: border-box;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-top: 5px;
+            border-radius: 10px;
+            margin: 5px;
+        }
+
+        .container>.row>.active {
+            background-color: #f44b4b;
+        }
+
+        .container>.row>.col>.icon {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: #f1a821;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .container>.row>.col>.icon>.col3 {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: #f3c879;
+            border-radius: 5px;
+        }
+
+        .container>.row>.col>.active {
+            background-color: #f36262;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row row1">
+            <div class="col col1">
+                <div class="icon" id="iconA1">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name1">A1</div>
+            </div>
+            <div class="col col2">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name2">
+                    <span>A2</span>
+                </div>
+            </div>
+            <div class="col col3">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name3">A3</div>
+            </div>
+            <div class="col col4">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name4">A4</div>
+            </div>
+            <div class="col col5">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name5">A5</div>
+            </div>
+        </div>
+
+        <div class="row row2">
+            <div class="col col1">
+                <div class="icon" id="iconA1">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name1">B1</div>
+            </div>
+            <div class="col col2">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name2">
+                    <span>B2</span>
+                </div>
+            </div>
+            <div class="col col3">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name3">B3</div>
+            </div>
+            <div class="col col4">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name4">B4</div>
+            </div>
+            <div class="col col5">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name5">B5</div>
+            </div>
+        </div>
+
+        <div class="row row3">
+            <div class="col col1">
+                <div class="icon" id="iconA1">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name1">C1</div>
+            </div>
+            <div class="col col2">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name2">
+                    <span>C2</span>
+                </div>
+            </div>
+            <div class="col col3">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name3">C3</div>
+            </div>
+            <div class="col col4">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name4">C4</div>
+            </div>
+            <div class="col col5">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name5">C5</div>
+            </div>
+        </div>
+
+        <div class="row row4">
+            <div class="col col1">
+                <div class="icon" id="iconA1">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name1">D1</div>
+            </div>
+            <div class="col col2">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name2">
+                    <span>D2</span>
+                </div>
+            </div>
+            <div class="col col3">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name3">D3</div>
+            </div>
+            <div class="col col4">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name4">D4</div>
+            </div>
+            <div class="col col5">
+                <div class="icon">
+                    <div class="col3"></div>
+                </div>
+                <div class="name name5">D5</div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        // $("#iconA1").css("background-color", "red");
+        // $(".row").css("background-color", "red");
+        // $("span").css("background-color", "red");
+        // $(".row3 .col3").css("background-color", "red");
+        // $(".row3 > .col3").css("background-color", "red");
+        // $(".col2 + .col3").css("background-color", "red");
+        $(".row4 .col2 + .col3").css("background-color", "red");
+
+
+
+
+
+    </script>
+</body>
+
+</html>

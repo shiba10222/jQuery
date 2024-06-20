@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可見性選擇器</title>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            background-color: #e2e1e1;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            text-align: center;
+            overflow: auto;
+        }
+
+        .bg {
+            position: fixed;
+            z-index: -1;
+            width: 700px;
+            background-color: #fff;
+            height: 100%;
+            padding-top: 50px;
+            padding-left: 30px;
+            padding-right: 30px;
+            box-shadow: 0px 0px 15px #aaaaaa;
+        }
+
+        .container {
+            width: 700px;
+            height: 100%;
+            padding-top: 50px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .op0 {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div class="container">
+        <span></span>
+        <div></div>
+        <div style="display:none;">Hidden</div>
+        <div></div>
+
+        <div class="hidden">Hidden</div>
+        <div class="op0">Hidden</div>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        console.log($(".container :hidden"));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>綁定點擊事件與觸發點擊事件</title>
+    <style>
+        .win {
+            width: 100%;
+            height: 30px;
+            background-color: #d5d5d5;
+        }
+
+        .active {
+            height: 250px;
+        }
+
+        .bar {
+            position: relative;
+            background-color: #06adbc;
+            width: 100%;
+            height: 30px;
+        }
+
+        .btn {
+            position: absolute;
+            right: 5px;
+            margin-top: 5px;
+            width: 20px;
+            height: 20px;
+            background-color: #2752ea;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #16aaf9;
+        }
+
+        .content {
+            background-color: #f4e9d4;
+            margin-left: 10px;
+            margin-top: 5px;
+            width: calc(100% - 20px);
+            height: calc(100% - 45px);
+        }
+
+        .close {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .close:hover {
+            color: #c21818;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="win active">
+        <div class="bar">
+            <div class="btn btn-close">x</div>
+        </div>
+        <div class="content"></div>
+    </div>
+    <div class="close">關掉視窗</div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(".btn-close").click(function(e){
+            $(".win").removeClass("active")
+        });
+        // $(".close").on("click", function(){
+        //     $(".btn-close").trigger("click");// trigger 觸發(.btn-close)的事件
+        // })
+        document.querySelector(".close").addEventListener("click", () => {
+            // document.querySelector(".btn-close").click();// .btn-close事件已被註冊過 所以直接用click()就可以了
+            
+            document.querySelector(".btn-close").dispatchEvent(new Event("click"));
+        })
+    </script>
+</body>
+
+</html>
