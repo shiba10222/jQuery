@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字選擇</title>
+</head>
+
+<body>
+    <textarea name="aaa" id="" cols="30" rows="10">
+        臺灣釣魚接着說出命令會有評價驅動衝擊很大感受我是，資料庫一對眾人違反提供請求體系舉行，我覺得情況請。
+      </textarea>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $("textarea[name=aaa]").on("select", e => {
+            console.log(window.getSelection().toString());
+        })
+    </script>
+</body>
+
+</html>

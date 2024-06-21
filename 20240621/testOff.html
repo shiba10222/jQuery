@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>傳遞資料</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .area {
+            background-color: #eae0f0;
+            min-height: 50px;
+            border-radius: 10px;
+            padding: 5px;
+            padding-left: 10px;
+        }
+
+        .area1 {
+            margin-bottom: 10px;
+            font-size: 30px;
+        }
+
+        .area2 {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="area area1"></div>
+        <div class="btns">
+            <button data-n="1" class="btn">按鈕1</button>
+            <button data-n="2">按鈕2</button>
+            <button data-n="3">按鈕3</button>
+            <button data-n="4">按鈕4</button>
+            <button data-n="5">按鈕5</button>
+        </div>
+        <div class="area area2"></div>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        let users = [
+            {
+                name: "后如琦",
+                email: "qWQJTyM4@gmail.com",
+            },
+            {
+                name: "常東中",
+                email: "tUBBSXfu@gmail.com",
+            },
+            {
+                name: "荊金妏",
+                email: "aUl1rRKsFrXc75@gmail.com",
+            },
+            {
+                name: "姚梅發",
+                email: "ARxeEmxwtFqfwV@gmail.com",
+            },
+            {
+                name: "都上綸",
+                email: "lCOIMudXd0@gmail.com",
+            },
+        ]
+
+        $("button").each((index, elm) => {
+            const data = parseInt($(elm).data("n"));
+            $(elm).on("click", { n: data }, showArea1_2);
+            $(elm).on("click", function () {
+                showArea2(data);
+            });
+
+        })
+
+        function showArea2(n) {
+            console.log(n);
+            let data = users[n - 1];
+            $(".area2").text(data.email);
+        }
+
+        function showArea1_2(e) {
+            const n = e.data.n;
+            let data = users[n - 1];
+            $(".area1").text(data.name);
+            // $(e.currentTarget).off("click", showArea1_2);
+            $(e.currentTarget).off();
+        }
+
+    </script>
+</body>
+
+</html>

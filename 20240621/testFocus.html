@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>焦點相關的事件</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            display: flex;
+            padding: 10px;
+            background-color: #c6c5c5;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .active {
+            background-color: #f6b46d;
+        }
+
+        .row label {
+            width: 50px;
+        }
+
+        .row input {
+            width: 100%;
+            border: none;
+        }
+        .white {
+            color: white;
+        }
+        .black {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="row row1">
+                <label for="inpu1" class="">inpu1</label>
+                <input id="inpu1" type="text">
+            </div>
+            <div class="row row2">
+                <label for="inpu2" class="">inpu2</label>
+                <input id="inpu2" type="text">
+            </div>
+            <div class="row row3">
+                <label for="inpu3" class="">inpu3</label>
+                <input id="inpu3" type="text">
+            </div>
+            <div class="row row4">
+                <label for="inpu4" class="">inpu4</label>
+                <input id="inpu4" type="text">
+            </div>
+        </form>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        // $("input").on("focus", e => {
+        //     $(e.currentTarget).addClass("active");
+        // }).on("blur", e => {
+        //     $(e.currentTarget).removeClass("active");
+        // })
+
+        $(".row").on("focusin", e => {
+            $(e.currentTarget).addClass("active")
+        }).on("focusout", e => {
+            $(e.currentTarget).removeClass("active")
+        })
+
+        $(".row label").on("focusin", e => {
+            $(e.currentTarget).addClass("white")
+        }).on("focusout", e => {
+            $(e.currentTarget).removeClass("white")
+        })
+    </script>
+</body>
+
+</html>

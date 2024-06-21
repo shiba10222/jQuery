@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>綁定將來會產生的物件</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .col1 {
+            padding-right: 10px;
+            display: flex;
+            justify-content: start;
+            align-items: start;
+        }
+
+        .col2 {
+            width: 100%;
+        }
+
+        .row input[type=text] {
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 20px;
+            margin-bottom: 0;
+        }
+
+        .row span {
+            display: inline-block;
+            padding: 0;
+            width: 100%;
+            font-size: 10px;
+            margin-top: 0;
+            line-height: 10px;
+            text-align: right;
+        }
+
+        .row1 {
+            margin-bottom: 2px;
+            border-bottom: 2px dotted #ccc;
+        }
+
+        .row2 {
+            margin-top: 50px;
+            border-bottom: 2px dotted #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row row2">
+            待辦事項
+        </div>
+        <div class="area1">
+            <div class="row row1">
+                <div class="col col1">
+                    <input type="checkbox">
+                </div>
+                <div class="col col2">買雞蛋</div>
+            </div>
+            <div class="row row1 inputRow">
+                <div class="col col2">
+                    <input type="text">
+                    <span>輸入完畢按 ENTER 送出</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="area2">
+            <div class="row row2">
+                完成事項
+            </div>
+        </div>
+    </div>
+    <script>
+        const inputText = document.querySelector("input[type=text]");
+        const area1 = document.querySelector(".area1")
+        const area2 = document.querySelector(".area2")
+        const container = document.querySelector(".container")
+
+        inputText.addEventListener("keydown", e => {
+            if (e.key === "Enter" && e.ctrlKey) {
+                let text = e.currentTarget.value;
+                let node = document.createElement("div");
+                let template = `<div class="row row1">
+                                    <div class="col col1">
+                                        <input type="checkbox">
+                                    </div>
+                                    <div class="col col2">${text}</div>
+                                </div>`;
+                node.innerHTML = template;
+                e.currentTarget.closest(".row")
+                area1.insertBefore(node.children[0], 
+                area1.children
+                [area1.children.length - 1]
+                );
+
+                e.currentTarget.value = ""
+            }
+        })
+
+        const checkbox = document.querySelector("input[type=checkbox]");
+        checkbox.addEventListener("change", e => {
+            if (e.target.checked) {
+                area2.append(e.target.closest(".row"));
+            } else {
+                area1.insertBefore(
+                    e.target.closest(".row"),
+                    area1.children[area1.children.length - 1]
+                );
+            }
+        })
+
+        container.addEventListener("change", e => {
+            if (e.target.type === "checkbox") {
+                if (e.target.checked) {
+                    area2.append(e.target.closest(".row"));
+                } else {
+                    area1.insertBefore(
+                        e.target.closest(".row"),
+                        area1.children[area1.children.length - 1]
+                    );
+                }
+            };
+        })
+    </script>
+</body>
+
+</html>

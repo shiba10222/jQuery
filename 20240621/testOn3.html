@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>綁定將來會產生的物件</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .col1 {
+            padding-right: 10px;
+            display: flex;
+            justify-content: start;
+            align-items: start;
+        }
+
+        .col2 {
+            width: 100%;
+        }
+
+        .row input[type=text] {
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 20px;
+            margin-bottom: 0;
+        }
+
+        .row span {
+            display: inline-block;
+            padding: 0;
+            width: 100%;
+            font-size: 10px;
+            margin-top: 0;
+            line-height: 10px;
+            text-align: right;
+        }
+
+        .row1 {
+            margin-bottom: 2px;
+            border-bottom: 2px dotted #ccc;
+        }
+
+        .row2 {
+            margin-top: 50px;
+            border-bottom: 2px dotted #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row row2">
+            待辦事項
+        </div>
+        <div class="area1">
+            <div class="row row1">
+                <div class="col col1">
+                    <input type="checkbox">
+                </div>
+                <div class="col col2">買雞蛋</div>
+            </div>
+            <div class="row row1 inputRow">
+                <div class="col col2">
+                    <input type="text">
+                    <span>輸入完畢按 ENTER 送出</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="area2">
+            <div class="row row2">
+                完成事項
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        let isCtrl = false;
+        $("input[type=text]").on("keydown", e => {
+            if (e.key === "Control") {
+                isCtrl = true;
+            }
+        }).on("keyup", e => {
+            if (e.key === "Control") {
+                isCtrl = false;
+            }
+            if (e.key == "Enter" && isCtrl) {
+                let text = $(e.currentTarget).val();
+                let template = `<div class="row row1">
+                                    <div class="col col1">
+                                        <input type="checkbox">
+                                    </div>
+                                    <div class="col col2">${text}</div>
+                                </div>`;
+                $(e.currentTarget).closest(".row").before(template);
+                $(e.currentTarget).val("");
+            }
+        })
+
+
+        // 現有物件的事件註冊
+
+        // $("input[type=checkbox]").on("change", e => {
+        //     if ($(e.currentTarget).prop("checked")) {
+        //         $(e.currentTarget).closest(".row").appendTo($(".area2"))
+        //     } else {
+        //         $(e.currentTarget).closest(".row").insertBefore(".inputRow")
+        //     }
+        // })
+
+        // 未來物件的事件註冊
+        
+        $(".container").on("change", "input[type=checkbox]", e => {
+            if ($(e.currentTarget).prop("checked")) {
+                $(e.currentTarget).closest(".row").appendTo($(".area2"))
+            } else {
+                $(e.currentTarget).closest(".row").insertBefore(".inputRow")
+            };
+        })
+    </script>
+</body>
+
+</html>

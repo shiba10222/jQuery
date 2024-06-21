@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>值變化時的事件</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            display: flex;
+            padding: 10px;
+            background-color: #c6c5c5;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .row1 {
+            background-color: #e3eced;
+        }
+
+        .active {
+            background-color: #f6b46d;
+        }
+
+        label {
+            min-width: 50px;
+            padding-left: 5px;
+            padding-right: 20px;
+        }
+
+        input[type=text],
+        select {
+            width: 100%;
+            border: none;
+        }
+
+        select {
+            font-size: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 50px;
+            border: none;
+        }
+
+        .row1 {
+            min-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="row row1">
+
+            </div>
+            <div class="row row2">
+                <label for="inpu1" name="input1">inpu1</label>
+                <input id="inpu1" type="text">
+            </div>
+            <div class="row row3">
+                <input id="inpu2_1" type="checkbox" name="input2" value="c1">
+                <label for="inpu2_1">inpu2_1</label>
+                <input id="inpu2_2" type="checkbox" name="input2" value="c2">
+                <label for="inpu2_2">inpu2_2</label>
+                <input id="inpu2_3" type="checkbox" name="input2" value="c3">
+                <label for="inpu2_3">inpu2_3</label>
+                <input id="inpu2_4" type="checkbox" name="input2" value="c4">
+                <label for="inpu2_4">inpu2_4</label>
+            </div>
+            <div class="row row4">
+                <input id="inpu3_1" type="radio" name="input3" value="r1">
+                <label for="inpu3_1">inpu3_1</label>
+                <input id="inpu3_2" type="radio" name="input3" value="r2">
+                <label for="inpu3_2">inpu3_2</label>
+                <input id="inpu3_3" type="radio" name="input3" value="r3">
+                <label for="inpu3_3">inpu3_3</label>
+                <input id="inpu3_4" type="radio" name="input3" value="r4">
+                <label for="inpu3_4">inpu3_4</label>
+            </div>
+            <div class="row row5">
+                <label for="input5">input5</label>
+                <textarea name="input5" id="input5"></textarea>
+            </div>
+            <div class="row row6">
+                <label for="input6">input5</label>
+                <select name="input6" id="input6">
+                    <option value="s1">input6_1</option>
+                    <option value="s2">input6_2</option>
+                    <option value="s3">input6_3</option>
+                    <option value="s4">input6_4</option>
+                    <option value="s5">input6_5</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $("input[type=text], textarea").on("keyup", e => {
+            $(".row1").text($(e.currentTarget).val());
+        });
+        
+        $("input[type=checkbox]").on("change", e => {
+            let vals = [];
+            let texts = [];
+            $(e.currentTarget)
+                .closest(".row")
+                .find("input[type=checkbox]:checked")
+                .each((index, elm) => {
+                    vals.push($(elm).val())
+                    texts.push($(elm).next("label").text())
+                });
+            $(".row1").html(`${vals.join(",  ")}<br>${texts}`);
+        });
+
+        $("input[type=radio]").on("change", e => {
+            let tg = $(e.currentTarget)
+                .closest(".row")
+                .find("input[type=radio]:checked")
+            $(".row1").html(`${tg.val()}<br>${tg.next("label").text()}`);
+        });
+
+        $("select").on("change", e => {
+            // console.log($("select option:selected").val());
+            // console.log($("select option:selected").text());
+            $(".row1").html(`${$("select option:selected").val()}<br>${$("select option:selected").text()}`)
+
+        })
+    </script>
+</body>
+
+</html>
