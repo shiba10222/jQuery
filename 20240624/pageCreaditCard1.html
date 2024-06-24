@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翻牌</title>
+    <style>
+        .cardArea {
+            padding-top: 100px;
+            padding-bottom: 100px;
+            display: flex;
+            justify-content: center;
+
+            .card {
+                position: relative;
+                width: 300px;
+                aspect-ratio: 4/3;
+                perspective: 10000px;
+
+                .content {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgb(0, 38, 255);
+                    transform-style: preserve-3d;
+                    transition: transform 2s;
+                    border-radius: 10px;
+
+                    .page {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 36px;
+                        /* display: grid;
+                        place-items: center; */
+                        background-color: lightblue;
+                        backface-visibility: hidden;
+                        border-radius: 10px;
+                        box-sizing: border-box;
+                        padding: 10px;
+                    }
+
+                    .back {
+                        background-color: rgb(205, 205, 7);
+                        transform: rotateY(180deg);
+                    }
+                    .num {
+                        font-size: 24px;
+                        padding-top: 10px;
+                        text-align: center;
+                    }
+                    .name {
+                        font-size: 20px;
+                        position:absolute;
+                        left: 20px;
+                        bottom: 20px;
+                        font-size: 20;
+                    }
+                    .exp{
+                        position: absolute;
+                        font-size: 20px;
+                        right: 20px;
+                        bottom: 20px;
+                    }
+                    .cw {
+                        font-size: 16px;
+                        background-color: white;
+                        height: 30px;
+                        line-height: 30px;
+                        text-align: right;
+                        border-radius: 5px;
+                        padding-right: 10px;
+                    }
+                }
+                &:hover .content {
+                    transform: rotateY(180deg);
+                    transition: transform 0.5s
+                }
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="cardArea">
+        <div class="card">
+            <div class="content">
+                <div class="page cover">
+                    <div class="num">#### #### #### ####</div>
+                    <div class="name">FULL NAME</div>
+                    <div class="exp">MM/YY</div>
+                </div>
+                <div class="page back">
+                    <div class="cw">123</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+</body>
+
+</html>

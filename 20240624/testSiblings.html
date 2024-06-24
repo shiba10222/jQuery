@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>往左與往右的範例 1</title>
+    <style>
+        ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-top: 50px;
+            flex: 1;
+            height: 100px;
+            transition: all 0.2s;
+        }
+
+        ul li img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .big1 {
+            flex: 2;
+            height: 200px;
+            margin-top: 20px;
+            z-index: 2;
+        }
+
+        .big2 {
+            flex: 1.5;
+            margin-top: 30px;
+            height: 150px;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><img src="https://images.pexels.com/photos/1023953/pexels-photo-1023953.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt=""></li>
+        <li><img src="https://images.pexels.com/photos/992734/pexels-photo-992734.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt=""></li>
+        <li><img src="https://images.pexels.com/photos/673847/pexels-photo-673847.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt=""></li>
+        <li><img src="https://images.pexels.com/photos/2058853/pexels-photo-2058853.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt=""></li>
+        <li><img src="https://images.pexels.com/photos/2076494/pexels-photo-2076494.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt=""></li>
+        <li><img src="https://images.pexels.com/photos/2004630/pexels-photo-2004630.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt=""></li>
+    </ul>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        // 用 prototype 自訂方法
+        Array.prototype.next = function (index) {
+            return this[index + 1];
+        }
+        Array.prototype.prev = function (index) {
+            return this[index - 1];
+        }
+
+        // $("li").on("mouseenter", e => {
+        //     $(e.currentTarget)
+        //         .addClass("big1")
+        //         .prev().addClass("big2")
+        //         .end().next().addClass("big2");
+        // }).on("mouseleave", e => {
+        //     $("li")
+        //     .removeClass("big1")
+        //     .removeClass("big2")
+        // })
+
+        // const lis = document.querySelectorAll("li");
+        // lis.forEach(li => {
+        //     li.addEventListener("mouseenter", e => {
+        //         e.currentTarget
+        //             .classList.add("big1");
+        //         if (e.currentTarget
+        //             .previousElementSibling) {
+        //             e.currentTarget.previousElementSibling
+        //             .classList.add("big2");
+        //         }
+        //         if (e.currentTarget
+        //             .nextElementSibling) {
+        //             e.currentTarget.nextElementSibling
+        //             .classList.add("big2");
+        //         }
+        //     });
+        //     li.addEventListener("mouseleave", e => {
+        //         lis.forEach(li => {
+        //             li.classList.remove("big1");
+        //             li.classList.remove("big2");
+        //         })
+        //     });
+        // })
+
+        // const lis= Array.from(document.querySelectorAll("li"))
+        const lis = [...document.querySelectorAll("li")];
+        lis.map((li, index) => {
+            li.addEventListener("mouseenter", e => {
+                // const index = lis.indexOf(e.currentTarget);
+                e.currentTarget.classList.add("big1");
+                // if (index - 1 >= 0) lis[index - 1].classList.add("big2");
+                // if (index + 1 <= lis.length - 1) lis[index + 1].classList.add("big2");
+
+                // 這裡的判斷是去判斷第一張圖片之前有沒有圖片，如果沒有圖片就不執行，不然會報錯
+                if(lis.next(index))lis.next(index).classList.add("big2");
+
+                // 判斷最後一張圖片之後有沒有圖片，如果沒有圖片就不執行
+                if(lis.prev(index))lis.prev(index).classList.add("big2");
+            });
+            li.addEventListener("mouseleave", e => {
+                lis.forEach(li => {
+                    li.classList.remove("big1");
+                    li.classList.remove("big2");
+                })
+            });
+        })
+    </script>
+</body>
+
+</html>
