@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>等待時間的使用</title>
+    <style>
+        .block {
+            position: relative;
+
+            .circle {
+                position: relative;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                background-color: lightblue;
+
+            }
+
+            .circle2 {
+                background-color: lightcyan;
+            }
+
+            .circle3 {
+                background-color: lightcoral;
+            }
+
+            .active {
+                animation-name: circleAni;
+                animation-duration: 3s;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
+            }
+        }
+
+        @keyframes circleAni {
+            0% {
+                transform: translateX(0px)
+            }
+
+            100% {
+                transform: translateX(350px)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block">
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+    </div>
+</body>
+<script>
+    const circle1 = document.querySelector(".circle1");
+    const circle2 = document.querySelector(".circle2");
+    const circle3 = document.querySelector(".circle3");
+
+    run1();
+
+    function run1() {
+        circle1.classList.add("active");
+        setTimeout(function () {
+            run2();
+        }, 1500);
+    }
+    function run2() {
+        circle2.classList.add("active");
+        setTimeout(function () {
+            run3();
+        }, 1500);
+    }
+    function run3() {
+        circle3.classList.add("active");
+    }
+</script>
+
+</html>
