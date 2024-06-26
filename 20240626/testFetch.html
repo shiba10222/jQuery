@@ -18,30 +18,32 @@
     </div>
 
     <script>
-        const url = "https://randomuser.me/api/?results=5";
+        const url = "https://randomuser.me/api/?results=25";
         const container = document.querySelector(".container");
 
         fetch(url, {
-            method: "GET",
+            method: "GET",  // body是只有POST才可以用的參數
         }).then(response => {
             return response.json();
         }).then(results => {
-            console.log(results.results);
+            // console.log(results.results);
             results.results.forEach(user => {
                 console.log(user.picture.large);
                 console.log(user.name.first);
-                const node = document.createElement("div");
+                const node = document.createElement("div");// 動態的產生一個 div 把 HTML 指定進去 再把它放到conatainer裡面; createElement 建立起來的 <div> 會存到記憶體裡面
                 node.innerHTML = `<div class="user">
-                                    <div class="img">
-                                      <img src="${user.picture.large}" alt="">
-                                    </div>
+                                        <div class="img">
+                                            <img src="${user.picture.large}" alt="">
+                                        </div>
                                   </div>
-                                  <div class="name">${user.name.first}</div>`;
-                container.append(node)
+                                  <div class="name">${user.name.first}</div>`
+                container.append(node);
             });
         }).catch(error => {
             console.log(error);
         });
+
+
     </script>
 </body>
 
