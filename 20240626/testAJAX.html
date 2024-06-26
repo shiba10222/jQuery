@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>測試AJAX</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: auto;
+        }
+
+        .a {
+            grid-column: 1 / span 12;
+            grid-row: 1;
+        }
+
+        .b {
+            grid-column: 1 / span 4;
+            grid-row: 2;
+        }
+
+        .c {
+            grid-column: 5 / span 8;
+            grid-row: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="a">a</div>
+        <div class="b">b</div>
+        <div class="c">c</div>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $.ajax({
+            method: "GET",
+            url: "https://sagedaben.com/iSpan/api/file.php?file=a.html",
+            dataType: "html"
+        }).done(function (data) {
+           $(".a").html(data);
+        }).fail(function (error) {
+            console.log(error);
+        });
+
+        $.ajax({
+            method: "GET",
+            url: "https://sagedaben.com/iSpan/api/file.php?file=b.html",
+            dataType: "html"
+        }).done(function (data) {
+           $(".b").html(data);
+        }).fail(function (error) {
+            console.log(error);
+        });
+
+        $.ajax({
+            method: "GET",
+            url: "https://sagedaben.com/iSpan/api/file.php?file=c.html",
+            dataType: "html"
+        }).done(function (data) {
+           $(".c").html(data);
+        }).fail(function (error) {
+            console.log(error);
+        });
+    </script>
+</body>
+
+</html>

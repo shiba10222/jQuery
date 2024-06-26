@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test Fetch</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class="user">
+            <div class="img">
+                <img src="${picture.large}" alt="">
+            </div>
+        </div>
+        <div class="name">$(name.first)</div> -->
+    </div>
+
+    <script>
+        const url = "https://randomuser.me/api/?results=5";
+        const container = document.querySelector(".container");
+
+        fetch(url, {
+            method: "GET",
+        }).then(response => {
+            return response.json();
+        }).then(results => {
+            console.log(results.results);
+            results.results.forEach(user => {
+                console.log(user.picture.large);
+                console.log(user.name.first);
+                const node = document.createElement("div");
+                node.innerHTML = `<div class="user">
+                                    <div class="img">
+                                      <img src="${user.picture.large}" alt="">
+                                    </div>
+                                  </div>
+                                  <div class="name">${user.name.first}</div>`;
+                container.append(node)
+            });
+        }).catch(error => {
+            console.log(error);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test AJAX load</title>
+    <style>
+        .block {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block"></div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        const url="https://sagedaben.com/iSpan/api/file.php?file=d.html .area3";
+        $(".block").load(url);
+    </script>
+</body>
+
+</html>

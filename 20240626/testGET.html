@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test AJAX GET</title>
+</head>
+
+<body>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        // const url = "https://sagedaben.com/iSpan/api/file.php?a.html";
+        const url = "https://sagedaben.com/iSpan/api/file.php";
+        const params = {
+            file: "a.html"
+        }
+        const dataType = "html";
+        // $.get(url, function(data){
+        //     console.log(data);
+        // } ,dataType);
+
+        $.get(url, params, function (data) {
+            console.log(data);
+        }, dataType).fail();
+    </script>
+</body>
+
+</html>

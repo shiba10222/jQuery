@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test AJAX get JSON</title>
+</head>
+
+<body>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        const url = "https://randomuser.me/api/";
+        const params = {
+            results:5
+        }
+
+        $.getJSON(url, params, function(data){
+            console.log(data);
+        })
+    </script>
+</body>
+    
+</html>
