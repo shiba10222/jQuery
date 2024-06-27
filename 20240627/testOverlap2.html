@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>碰撞偵測</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .game {
+            position: relative;
+            width: 100%;
+            height: 400px;
+
+            .a {
+                position: absolute;
+                top: 100px;
+                left: 200px;
+                width: 100px;
+                height: 100px;
+                background-color: #6d6d6d;
+                opacity: 0.7;
+            }
+
+            .b {
+                position: absolute;
+                top: 150px;
+                left: 250px;
+                width: 150px;
+                height: 150px;
+                background-color: #e05252;
+                opacity: 0.7;
+            }
+
+            .active {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game">
+        <div class="a"></div>
+        <div class="b"></div>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        let trace = false;
+        $(".b").one("click", e => {
+            trace = true;
+        })
+
+        $(window).on("mousemove", e => {
+            if (trace) {
+                let x = e.pageX - $(".b").outerWidth() / 2;
+                let y = e.pageY - $(".b").outerHeight() / 2;
+
+                $(".b").css("left", x);
+                $(".b").css("top", y);
+                isOverLap();
+            }
+        })
+
+        function isOverLap() {
+            let x1 = $(".a").offset().left;
+            let y1 = $(".a").offset().top;
+            let w1 = $(".a").outerWidth();
+            let h1 = $(".a").outerHeight();
+
+            let x2 = $(".b").offset().left;
+            let y2 = $(".b").offset().top;
+            let w2 = $(".b").outerWidth();
+            let h2 = $(".b").outerHeight();
+
+            if (
+                x1 < x2 + w2 &&
+                x1 + w1 > x2 &&
+                y1 < y2 + h2 &&
+                y1 + h1 > y2
+            ) {
+                console.log("碰到了");
+                $(".a").addClass("active");
+                $(".b").addClass("active");
+
+            } else {
+                console.log("沒碰到");
+                $(".a").removeClass("active");
+                $(".b").removeClass("active");
+
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

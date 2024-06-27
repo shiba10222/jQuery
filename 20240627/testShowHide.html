@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顯示與隱藏</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            background-color: #e7ef9c;
+            font-size: 24px;
+            padding: 10px;
+            border-radius: 10px;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .row8 {
+            transition: all 1s;
+            transform: scaleY(1);
+            transform-origin: left top;
+        }
+
+        .hide2 {
+            transform: scaleY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row row1">1: click and hide</div>
+        <div class="row row2">2: click and hide</div>
+        <div class="row row3">3: click and hide</div>
+        <div class="row row4">4</div>
+        <div class="row row5">5: click and show</div>
+        <div class="row row6">6: toggle</div>
+        <div class="row row7">7: js toggle</div>
+        <div class="row row8">8: js toggle</div>
+        <div class="row row8">9: js toggle</div>
+
+
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(".row1").on("click", e => {
+            $(e.currentTarget).hide();
+        })
+        $(".row2").on("click", e => {
+            $(e.currentTarget).hide(1000);
+        })
+        $(".row3").on("click", e => {
+            $(e.currentTarget).hide(1000, () => {
+                $(".row4").hide(1000);
+            });
+        })
+        $(".row5").on("click", e => {
+            $(".row4").show(2000);
+        })
+        $(".row6").on("click", e => {
+            $(".row1").toggle();
+        })
+
+        const row8 = document.querySelector(".row8")
+        document.querySelector(".row7").addEventListener("click", e => {
+            if (row8.classList.contains("hide") && row8.classList.contains("hide2")) {
+                row8.classList.remove("hide");
+                setTimeout(() => {
+                    row8.classList.remove("hide2");
+                }, 100)
+            } else {
+                row8.classList.toggle("hide2");
+
+            }
+
+        })
+
+        row8.addEventListener("transitionstart", e => {
+            console.log("QQ");
+        })
+
+        row8.addEventListener("transitionend", e => {
+            if (e.currentTarget.classList.contains("hide2")) {
+                e.currentTarget.classList.add("hide");
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

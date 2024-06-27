@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>碰撞偵測</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .game {
+            position: relative;
+            width: 100%;
+            height: 400px;
+
+            .a {
+                position: absolute;
+                top: 100px;
+                left: 200px;
+                width: 100px;
+                height: 100px;
+                background-color: #6d6d6d;
+                opacity: 0.7;
+            }
+
+            .a2 {
+                top: 300px;
+            }
+
+            .b {
+                position: absolute;
+                top: 150px;
+                left: 250px;
+                width: 150px;
+                height: 150px;
+                background-color: #e05252;
+                opacity: 0.7;
+            }
+
+            .active {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game">
+        <div class="a a1"></div>
+        <div class="a a2"></div>
+        <div class="b"></div>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        let trace = false;
+        $(".b").on("click", e => {
+            trace = !trace;
+        })
+
+        $(window).on("mousemove", e => {
+            if (trace) {
+                let x = e.pageX - $(".b").outerWidth() / 2;
+                let y = e.pageY - $(".b").outerHeight() / 2;
+
+                $(".b").css("left", x);
+                $(".b").css("top", y);
+
+                let overLap = false;
+                $(".a").each((index, elm) => {
+                    if (isOverLap($(".b"), $(elm))) {
+                        overLap = true;
+                        $(elm).addClass("active");
+                        $(".b").addClass("active");
+                        return;
+                    }
+
+                });
+                if (!overLap) {
+                    $(".a").removeClass("active");
+                    $(".b").removeClass("active");
+                }
+            }
+        })
+
+        function isOverLap($div1, $div2) {
+            let x1 = $($div1).offset().left;
+            let y1 = $($div1).offset().top;
+            let w1 = $($div1).outerWidth();
+            let h1 = $($div1).outerHeight();
+
+            let x2 = $($div2).offset().left;
+            let y2 = $($div2).offset().top;
+            let w2 = $($div2).outerWidth();
+            let h2 = $($div2).outerHeight();
+
+            if (
+                x1 < x2 + w2 &&
+                x1 + w1 > x2 &&
+                y1 < y2 + h2 &&
+                y1 + h1 > y2
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
