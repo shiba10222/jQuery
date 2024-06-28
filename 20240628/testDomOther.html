@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作DOM的其他方法</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row row1">1</div>
+        <div class="row row2">2</div>
+        <div class="row row3">3</div>
+        <div class="row row4">4</div>
+        <div class="row row5">5</div>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+
+        const ary = Array.from(document.querySelectorAll(".row")).map((elm, index) => {
+            const text = elm.innerText;
+            return {index, text}
+            
+        })
+        console.log(ary);
+        // const ary = $(".row").map((index, elm) => {
+        //     return $(elm).text();
+        // })
+
+        // console.log(ary);
+        // $(".row").each((index, elm)=>{
+        //     console.log(elm);
+        // })
+        // document.querySelectorAll(".row").forEach((elm, index)=>{
+        //     console.log(elm);
+        // });
+        //    console.log($(".row3").index());
+        //    console.log(
+        //     [...document.querySelectorAll(".row")].indexOf(
+        //         document.querySelector(".row3")
+        //     )); 
+    </script>
+</body>
+
+</html>

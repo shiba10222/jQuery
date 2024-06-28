@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        ul {
+            width: 100%;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            font-size: 36px;
+            background-color: #a236f6;
+            color: #fff;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            text-align: center;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .active1 {
+            background-color: #771bbd;
+        }
+
+        .active2 {
+            background-color: #ce9cf5;
+        }
+
+        .btns {
+            margin-top: 20px;
+        }
+
+        button {
+            width: 100%;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .words {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+        <div class="btns">
+            <input name="put" type="radio" id="after" value="after" checked><label for="after">放到指定的後面</label>
+            <input name="put" type="radio" id="before" value="before"><label for="before">放到指定的前面</label>
+            <input name="put" type="radio" id="switch" value="switch"><label for="switch">交換</label>
+        </div>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        let selectAry = [];
+        $("li").on("click", async e => {
+            if (selectAry.length < 2) {
+                selectAry.push($(e.currentTarget).index());
+                console.log(selectAry);
+                $(e.currentTarget).addClass("active" + selectAry.length);
+
+                if (selectAry.length === 2) {
+                    await waitting(500);
+                    console.log($("input[type=radio]:checked").val());
+                    if ($("input[type=radio]:checked").val() === "after") {
+                        afterIt();
+                    } else if ($("input[type=radio]:checked").val() === "before") {
+                        beforeIt();
+                    } else if ($("input[type=radio]:checked").val() === "switch") {
+                        switchIt();
+                    }
+                    await waitting(300);
+                    selectAry = [];
+                    $("li").removeClass("active1");
+                    $("li").removeClass("active2");
+                }
+            }
+        })
+
+        function afterIt() {
+            $("li").eq(selectAry[1]).after($("li").eq(selectAry[0]))
+        }
+
+        function beforeIt() {
+            $("li").eq(selectAry[1]).before($("li").eq(selectAry[0]))
+        }
+
+        function switchIt() {
+            const clone0 = $("li").eq(selectAry[0]).clone();
+            const clone1 = $("li").eq(selectAry[1]).clone();
+            $("li").eq(selectAry[0]).replaceWith(clone1);
+            $("li").eq(selectAry[1]).replaceWith(clone0);
+        }
+
+        function waitting(t) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve();
+                }, t);
+            })
+        }
+    </script>
+</body>
+
+</html>
